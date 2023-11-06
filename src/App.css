@@ -1,38 +1,163 @@
-.App {
-  text-align: center;
+/* styles for the container div */
+* {
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+body {
+  background-color: rgb(238, 243, 245);
+}
+.image-container {
+  margin: 20px 300px;
+  box-shadow: 0 0 2px #ccc;
+  border-radius: 15px;
+  background-color: white;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* grid styles */
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  grid-template-rows: auto;
+  grid-gap: 20px;
+  padding: 40px;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* individual image styles */
+.image-item,
+.add-image-button {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 2px solid #ccc;
+  border-radius: 15px;
+  cursor: pointer;
+  display: block;
+}
+
+/* specific style for the first image */
+.image-item-first {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+/* button styles */
+.add-image-button {
+  border: 2px dashed #ccc;
+}
+/*--------------------------------*/
+/* Checkbox styles */
+.checkbox {
+  display: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 25px;
+  height: 25px;
+  border: 2px solid #ccc;
+}
+
+/* Container for image and checkbox */
+.image-item-container {
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  border-radius: 15px;
+}
+
+/* for the gray background hover */
+.image-item-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Show the background overlay on hover */
+.image-item-container:hover::before {
+  opacity: 1;
+}
+
+/* Show the checkbox on hover */
+.image-item-container:hover .checkbox {
+  display: block;
+}
+
+.image-item-container.clicked .checkbox {
+  display: block;
+}
+/*--------------------------------*/
+
+/*all header related style */
+.header {
+  padding: 25px 40px;
+}
+
+.flexContainer {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: space-between;
 }
 
-.App-link {
-  color: #61dafb;
+.header-text {
+  font-weight: bold;
+  font-size: 24px;
+}
+.header-checkbox {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header-text-Link {
+  color: red;
+  text-decoration: none;
+  font-size: larger;
+  font-weight: bold;
+}
+
+.header-text-Link:hover {
+  text-decoration: underline;
+}
+
+.add{
+  margin-top: 20px;
+}
+/*--------------------------------*/
+
+/***media Queries */
+/* /* Responsive styles */
+@media (max-width: 1200px) {
+  .image-container {
+    margin: 20px 100px;
   }
-  to {
-    transform: rotate(360deg);
+
+  .image-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .image-container {
+    margin: 20px 20px;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .image-container {
+    margin: 20px 10px;
+  }
+
+  .image-grid {
+    grid-template-columns: repeat(1, 1fr);
   }
 }
